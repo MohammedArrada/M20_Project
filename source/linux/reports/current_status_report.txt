@@ -1,0 +1,147 @@
+M20 STATUS REPORT  RECEIVED MANUAL COPY
+=======================================
+
+Report identity
+---------------
+
+Generated: 2026-10-05
+
+Source: data/system_status.dat
+
+READY: 5
+
+MAINTENANCE: 3
+
+NOT_READY: 2
+
+TOTAL: 12
+
+These counts are retained here to show what arrived with the package. They do
+not reconcile to the approved 12-record baseline, and the categories do not
+use the final required names.
+
+Source review
+-------------
+
+The received report was prepared while the data file still contained
+abbreviated and incomplete statuses. It cannot establish whether SYS-112 was
+counted or why a row may have been excluded.
+
+A current report identifies the approved source file exactly. The independent
+checker should be able to open that file and recompute the category counts
+without guessing which snapshot was used.
+
+Validation required before publication
+--------------------------------------
+
+Every data row must have four pipe-separated fields. Each status must be one
+of the exact approved words. The date is shown in YYYY-MM-DD shape. The
+number of rows must equal the sum of the category totals.
+
+If a row fails any required check, report preparation stops. Record its
+system ID and reason and correct only the working source file under the
+approved SEB task.
+
+Calculation and reconciliation
+------------------------------
+
+Count status values directly from data after correction. Record a total for
+each approved category and a grand total. Explain discrepancies instead of
+changing a displayed number until it happens to match an expected answer.
+
+The corrected baseline is expected to reconcile to 5 READY, 3 MAINTENANCE, 4
+NOT_READY, and 12 TOTAL. The generation date for this classroom scenario is
+2026-10-05.
+
+Historical report handling
+--------------------------
+
+A previous report is evidence of what the team saw at an earlier point.
+Preserve earlier report copies in reports/archive; do not overwrite or delete
+them just because the numbers were later found to be stale.
+
+This current_status_report.txt name identifies the latest manually verified
+report inside working. A historical copy needs its own distinguishable date
+or identifier. Avoid claiming FINAL based on the filename alone.
+
+Checker record
+--------------
+
+Checker: not yet recorded
+
+Check performed: not yet recorded
+
+Trello evidence: SEB-07
+
+After the working report is updated, a different student confirms its values
+against the source data and records their check. The absence of a checker
+result in this received copy is another reason not to publish its numbers as
+current.
+
+Handoff reminder
+----------------
+
+After review, transfer verified working files into source/linux/ in the
+student’s M20_Project repository. Keep the incoming report unchanged. Later
+Bash work uses the corrected baseline to generate reports automatically.
+
+REPORT REVIEW AND RECONCILIATION NOTES
+======================================
+
+Why the first block cannot be published as current
+--------------------------------------------------
+
+The received copy uses a slash date, old source filename, old status labels,
+and a total of 11 even though the approved baseline contains 12 rows. It also
+claims FINAL without showing a checker or evidence.
+
+A student should use the old block as a starting point for targeted
+correction, not as a trusted source for current counts. The repaired data
+file, requirements reference, and peer check establish the new values.
+
+How a manual report should be checked
+-------------------------------------
+
+Reopen the corrected working data file and run the row-count, field-count,
+status, and date-shape checks. Recompute the category totals using the actual
+third field of each row. Check that those values add to the row count.
+
+Read the displayed current report from top to bottom. Confirm the source
+path, scenario generation date, three approved category labels, numbers,
+total, and checker evidence. A correct number attached to a wrong label can
+still mislead a reader.
+
+What the archive copy preserves
+-------------------------------
+
+Before editing the current report, save the received copy in reports/archive
+with a distinct identifier. That earlier file demonstrates what the team
+received and why a correction was needed. It should not be presented as the
+current operational result.
+
+The corrected current report may include a historical explanation of the
+stale earlier totals, but it must distinguish that explanation from the
+current verified summary. A reviewer should not have to guess which number is
+active.
+
+Interpreting a departure
+------------------------
+
+If a new count differs from the approved 5, 3, 4, and 12 result, investigate
+the data before changing the displayed answer. The difference may reflect a
+missing row, invalid status, wrong source path, or an accidental editor
+change.
+
+Record any unresolved departure on the SEB-07 card. Do not publish a result
+marked verified when an observed check still fails.
+
+Relationship to the next course
+-------------------------------
+
+The Bash course will generate output from validated inputs rather than asking
+a person to type numbers. This manual report shows the expected structure and
+provides a known baseline for comparison.
+
+An automated result must still be checked. A script can faithfully repeat a
+wrong input path or old status rule unless the team tests it against the
+controlled requirements.

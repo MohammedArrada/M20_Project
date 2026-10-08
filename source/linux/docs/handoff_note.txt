@@ -1,0 +1,198 @@
+M20 REPORT HANDOFF NOTE
+=======================
+
+Audience and reason
+-------------------
+
+This note accompanies the verified manual report when the team hands the
+project to the Bash scripting course. It identifies what a receiver should
+check and where the controlled files are located. It does not replace the
+project plan or create a new approval.
+
+The received copy intentionally carries a few old handoff instructions. The
+editor must correct them against docs/report_requirements.txt while keeping
+the useful context and the order of this note.
+
+Package identity
+----------------
+
+The working folder under ~/simple_editing is the place where students make
+their corrections. The incoming folder preserves the received original files.
+The extensions folder contains optional practice that does not establish the
+project baseline.
+
+After checks finish, the Windows M20_Project repository receives the verified
+working contents under source/linux. The Trello card SEB-08 records the
+pushed commit ID and any open issues.
+
+What the next team should receive
+---------------------------------
+
+The Linux input file is data/system_status.dat. It has 12 records and status
+counts of 7 READY, 2 MAINT, and 2 NOT READY. Treat these numbers as the final
+approved totals.
+
+The configuration and operating procedure are also included. The next team
+should be able to identify a single input path, the allowed statuses, the
+current report path, and the place where earlier reports are preserved.
+
+Handoff procedure
+-----------------
+
+Before the transfer, the editor and checker compare the working files with
+the incoming copies. They review only the approved changes and record each
+departure or unresolved issue.
+
+Copy the working files into source/linux/working on the student computer.
+Check that the nested directory matches the repository folder standard before
+committing. Record the Git commit and link it from the appropriate card.
+
+Review of data and report
+-------------------------
+
+Count statuses from the corrected data rather than from the stale starter
+report. Confirm the recorded source file path and generation date. The
+verified result should include the count of each approved category and a
+total that agrees with the number of rows.
+
+Older manual reports must remain available if the team later needs to explain
+what changed. The current report should be understandable without opening an
+editor or calculating totals again.
+
+Next course boundary
+--------------------
+
+The Bash course builds scripts that check the data, count valid statuses,
+archive a prior report, and produce a new report. This editing course
+prepares accurate inputs and documentation; no student needs to automate the
+workflow here.
+
+If the team finds a requirement conflict after handoff, record it as a
+question or change request. Do not silently modify the approved baseline or
+remove evidence from the incoming copy.
+
+RECEIVER CHECKS AND COURSE BOUNDARIES
+=====================================
+
+Confirm the source identity
+---------------------------
+
+The receiver must see the actual path of the file copied into source/linux
+and the commit that introduced it. A Trello card alone does not confirm that
+the transferred contents match the verified files on the VM.
+
+Check that source/linux/data/systems_status.dat exists directly below
+source/linux/data. A nested source/linux/working/data path would be a
+different structure. Confirm the destination before automation starts.
+
+Repeat the most important checks
+--------------------------------
+
+Run a row count on the transferred status file and verify that each row has
+four fields. Check the exact statuses and date shapes. Recompute the category
+totals from the copied file; they should be 5 READY, 3 MAINTENANCE, 4
+NOT_READY, and 12 TOTAL.
+
+Read source/linux/config/report_settings.conf and confirm it points to
+data/systems_status.dat. Review the procedure and current manual report. If
+the path or values disagree, record the departure rather than assuming the
+next course will silently repair it.
+
+Identify protected evidence
+---------------------------
+
+The original received ZIP remains the source package and incoming remains its
+unchanged evidence copy. The working tree is the edited VM copy. The Git
+repository contains the reviewed handoff copy used by the following course.
+
+These locations answer different questions: what arrived, what a student
+edited, and what the team recorded. Mixing them makes it difficult to explain
+who changed a value and when.
+
+Check the handoff record
+------------------------
+
+The SEB-08 card should identify the commit, the checker, the paths, and any
+unresolved issue. A status such as Complete without an evidence link is not
+enough for the next student to reproduce the work.
+
+If SSH or push failed, the next course should not claim the files were
+delivered. Record the exact failure and how it will be resolved before
+starting a pipeline against an unverified copy.
+
+Do not turn editing into scripting
+----------------------------------
+
+The students have practiced editor navigation, targeted replacements,
+preservation of source files, and verification. They do not need to write the
+later Bash implementation here. The corrected files are the input contract
+for that next course.
+
+The OpenVMS and Python requirement references stay in the package to give
+future context. They are not evidence that either solution has already been
+built.
+
+HANDOFF EXAMPLES AND RECEIVER QUESTIONS
+=======================================
+
+Scenario 1  Missing copied configuration
+----------------------------------------
+
+The receiver sees the corrected data in source/linux/data but no
+configuration under source/linux/config. The manual report may look right,
+but the next Bash script cannot use its required settings. The receiver
+records the missing path and asks for a checked transfer.
+
+The sender checks the original VM working tree and the scp destination. After
+correcting the transfer, the sender inspects Git status, makes an authorized
+commit, pushes it, and updates the SEB-08 evidence. The earlier commit cannot
+be presented as proof of a file it never contained.
+
+Scenario 2  Counts differ after transfer
+----------------------------------------
+
+The VM showed the approved counts, but a new check on the Windows copy
+reports one MAINT value. A successful scp command does not prove that the
+correct folder was copied. The receiver confirms which file is being counted
+and whether it came from incoming, working, or an older repository copy.
+
+Do not edit the Git copy merely to force the counts. First identify the
+controlled VM working file, check its latest validation, and repeat the
+transfer from the correct location. Document the discrepancy so the next
+course can see how it was resolved.
+
+Scenario 3  An ambiguous path in prose
+--------------------------------------
+
+The operating procedure and handoff note must direct the next course to the
+same approved input. If one document says data/system_status.dat and the
+configuration says data/systems_status.dat, a future student may open the
+wrong file even when the current report has the right numbers.
+
+A document check means comparing paths and requirements across files, not
+only proofreading each sentence. Correct the authorized working document and
+show the specific diff to a partner.
+
+Scenario 4  Status of future work
+---------------------------------
+
+The Bash script requirements, OpenVMS export requirements, and Python
+reporting requirements accompany the source package. They describe later
+deliverables. Their presence does not mean those systems have already been
+built or approved for deployment.
+
+The handoff should state clearly that the current output is a manually
+verified report and corrected inputs. Later students should be able to
+separate the completed editing task from pending automation work.
+
+Receiver questions
+------------------
+
+Can you show the exact path of the transferred data and configuration? Can
+you independently derive the four required report numbers? Can you find the
+maintenance note that supports SYS-112? Can you identify who checked the
+working files?
+
+Can you locate the commit corresponding to SEB-08? If an output is missing,
+can you tell whether it was never created, failed to transfer, or was left
+out of Git? Record the answer before beginning the next course.

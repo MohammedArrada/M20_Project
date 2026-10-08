@@ -1,0 +1,327 @@
+M20 MANUAL READINESS REPORT OPERATING PROCEDURE
+===============================================
+
+1. Purpose and scope
+--------------------
+
+This procedure explains how an M20 team member checks one controlled status
+data file and prepares one manually verified readiness report. It describes a
+short-term response while the team builds a Bash pipeline and later reporting
+systems.
+
+Apply this procedure to the current 12-record baseline. It is not approval to
+change the controlled project plan, invent a system status, or delete an
+earlier report. Use the current approved plan and recorded change decisions
+when a requirement is unclear.
+
+2. People and responsibilities
+------------------------------
+
+The operator checks that the selected package is the one supplied for this
+class and performs the manual validation and count. The checker repeats the
+important validation commands, reviews the edited report and files, and
+records the result. The person who owns the Trello task records the evidence
+and any departure.
+
+If the operator cannot establish the approved status for a blank or unusual
+record, stop and consult the controlled maintenance note. Do not silently
+count the record as READY. A reviewer cannot approve a count that cannot be
+explained from the source data.
+
+3. Starting locations
+---------------------
+
+In AlmaLinux, begin in ~/simple_editing/working. The incoming folder is
+original evidence. Never write or save a correction there. The working folder
+holds editable copies and the current report. After verification, the Windows
+Git repository receives the verified contents under M20_Project/source/linux.
+
+Confirm the working folder with pwd and inspect its contents with ls before
+opening an editor. Read docs/editing_tasks.txt and
+docs/report_requirements.txt before changing this procedure. The names of the
+actual data and configuration files matter because later commands will use
+them exactly.
+
+4. Locate and read the source data
+----------------------------------
+
+Open data/system_status.dat and read each record from start to end. The
+source has exactly 12 records, with SYS-101 through SYS-112 appearing once
+each. Each record contains four comma-separated fields in this order: system
+ID, unit, status, and last-checked date.
+
+Compare the names and field format in this section to the approved report
+requirements. Do not assume that a file or sentence is correct merely because
+it was included in the received package. Keep the order of records stable
+while correcting only approved fields.
+
+5. Validate records before counting
+-----------------------------------
+
+For each row confirm that system ID, unit, status, and last-checked date are
+present. An empty status is not an approved value. Check the date shape YYYY-
+MM-DD; the simple classroom check does not prove that every calendar date
+exists.
+
+Count READY, MAINT, and NOT READY. These names appear in older notes. A valid
+row must use only the exact approved values. Stop report preparation if any
+row still has an invalid field or status; write down the affected ID and the
+reason.
+
+The approved maintenance note for SYS-112 identifies its correct status. The
+operator must read that note and apply the recorded decision, rather than
+making a new assumption based on the other DELTA systems.
+
+6. Reconcile counts
+-------------------
+
+After all records pass validation, count each status directly from the
+corrected data. Compare the individual counts to the total number of records.
+Recompute if the status counts do not add up to 12.
+
+The known approved outcome for this baseline is 5 READY, 3 MAINTENANCE, and 4
+NOT_READY. The old report is stale, so it cannot be the source for those
+counts. If your validated source produces another result, stop and
+investigate instead of changing a report number until it matches.
+
+7. Prepare a current report
+---------------------------
+
+Enter the validated totals in report/current_status_report.txt. Record the
+generation date as 2026-10-05 for this scenario and identify
+data/systems_status.dat as the source. Include the method and the names of
+the checked files so another person can repeat the work.
+
+Save the report as final_report_new.txt and mark it FINAL. Check whether the
+chosen filename and status claim comply with the class naming and control
+rules. A report is current only after the stated checks have been completed
+and recorded.
+
+8. Preserve prior reports
+-------------------------
+
+Delete the prior report after publishing the new report so no one
+accidentally reads an old value. The team should be able to review how
+results changed over time, so compare this instruction with the report
+requirements before carrying it out.
+
+A preserved prior report must have a distinguishable name or recorded date.
+Its previous counts may be incorrect, but its historical existence can still
+explain why the repair was needed. Do not change an older report to match the
+new data.
+
+9. Independent check and evidence
+---------------------------------
+
+Ask another student to check that the README, this procedure, configuration,
+data, handoff note, and current report agree. The checker should review a
+focused diff against the incoming copy for each intentionally changed file.
+
+Record the SEB task ID, paths, verification command outputs or observations,
+checker name, and unresolved questions in Trello. 'Looks good' without a file
+path or result does not allow the next course to reproduce the decision.
+
+10. Transfer to the repository
+------------------------------
+
+Once the corrected working tree passes the checks, use scp from Windows Git
+Bash to copy it from the AlmaLinux VM into M20_Project/source/linux. Inspect
+the destination before adding files to Git. Git should contain the verified
+work and enough evidence for the Bash team to understand its source.
+
+A commit message that includes SEB-08 links the course handoff to the task.
+Push the commit to GitHub and record its short commit ID on the card. A
+successful copy alone does not create a Git history entry.
+
+11. Stop conditions and recovery
+--------------------------------
+
+Stop if the ZIP does not extract into incoming, working, and extensions; if a
+required file is absent; if a status cannot be verified; if the count is
+inconsistent; if the wrong host or folder is selected for scp; or if
+unexpected files appear in the staged Git diff.
+
+Correct the working copy only. The incoming copy allows a comparison and a
+fresh restart. Tell the instructor about a VM, SSH, or package problem rather
+than inventing missing data or recording a false pass.
+
+FIELD OPERATIONS EXAMPLES AND REVIEW CASES
+==========================================
+
+Example A  A familiar filename can still be wrong
+-------------------------------------------------
+
+An operator has two similarly named data files and opens the singular
+system_status.dat because it appears first in a listing. The current project
+uses systems_status.dat. A plausible filename cannot prove which file is
+approved; the operator checks the controlled documentation and actual path
+before counting.
+
+The checker asks the operator to show the path used for the count and
+compares it with DATA_FILE in configuration. If those two paths differ, the
+report is not ready to publish even if its numbers happen to match an
+expected total.
+
+Example B  A count can conceal an invalid record
+------------------------------------------------
+
+Suppose the operator counts READY, MAINTENANCE, and NOT_READY from a file
+that also contains one blank status. The three category counts may look
+reasonable, but they do not account for every baseline record. A total
+computed only from recognizable statuses would hide the omission.
+
+Check the number of input rows separately, then check field count, permitted
+status values, and date shape. The status counts must sum to the verified row
+count. SYS-112 provides a real example of why a blank value needs an approved
+explanation before it is corrected.
+
+Example C  A space changes a machine-readable status
+----------------------------------------------------
+
+A human reader may see READY and READY followed by a space as the same idea.
+A program compares the exact field contents. A trailing space may create a
+fourth category or fail validation. The same applies to lowercase ready and
+the phrase NOT READY with a space.
+
+Do not change all spaces in the file globally. Locate the affected system ID,
+inspect field three, change only the intended value, save, and compare the
+result against the original with diff.
+
+Example D  Old output is still evidence
+---------------------------------------
+
+The prior manual report printed 7 READY, 2 MAINT, 2 NOT READY, and TOTAL 11.
+These values are incorrect for the approved baseline, but the old report
+demonstrates why the team needed a controlled repair. Deleting it would
+remove useful history.
+
+Preserve prior output with a distinguishable identifier under
+reports/archive. The new current report must explain its source, date,
+validation, and corrected totals. A teammate should be able to tell which
+document is historical and which report has been independently checked.
+
+Example E  Verification before a repository commit
+--------------------------------------------------
+
+A student transfers files into source/linux but does not inspect the
+destination. The transfer may have created an extra working folder, so later
+Bash commands cannot find the expected path. A successful scp connection does
+not prove the folder layout is correct.
+
+Before staging, display the copied filenames and inspect the data and
+configuration paths. After staging, inspect the staged Git diff so the commit
+contains the intended project files. Record the commit ID only after the
+pushed files can be found in GitHub.
+
+Operational questions for the reviewer
+--------------------------------------
+
+Can you identify the currently approved plan without relying on the word
+FINAL? Can you locate the exact data path in documentation and configuration?
+Can you explain why the date on SYS-108 changes while valid dates on other
+rows stay the same?
+
+Can you show how the approved decision about SYS-112 was established? Can you
+explain the difference between a stale report and a verified current report?
+Can you trace a completed SEB task to its reviewed file and Git commit?
+
+ADDITIONAL OPERATOR CASES AND RECOVERY
+======================================
+
+When the package does not match the expected layout
+---------------------------------------------------
+
+The operator expects incoming, working, and extensions directly under
+~/simple_editing. If an archive creates an extra parent folder, a command
+typed from the expected location may fail or may refer to a different file.
+Confirm the actual location with pwd, find, and ls before opening an editor.
+
+Do not solve a layout problem by editing whichever copy first appears. Record
+what was extracted and ask the instructor to confirm the correct package and
+extraction command. Then establish the correct working folder before applying
+any project edits.
+
+When a status looks nearly correct
+----------------------------------
+
+A word can be readable to a person yet invalid for a program. MAINT is
+understandable but does not equal MAINTENANCE. NOT READY contains a space
+where the approved value requires an underscore. READY followed by a space is
+not the exact string READY.
+
+Locate the affected system ID and check only its status field. Read the full
+line after saving. A word-level vim change that accidentally removes a pipe
+can also make the row invalid, so check the number of fields before accepting
+the result.
+
+When one validation check passes and another fails
+--------------------------------------------------
+
+A record with an empty status may still contain exactly four fields. Passing
+the field-count check does not mean the status is valid. A report with the
+right total may still contain a date in the wrong shape.
+
+Run each check for its own purpose. Keep the outputs together so the checker
+can tell whether field count, allowed statuses, date shape, and category
+totals were all reviewed. Avoid describing a single blank command output as
+proof that every kind of validation passed.
+
+When the manual report is already present
+-----------------------------------------
+
+The received report shows an earlier attempt with stale totals. Before
+replacing a current report, keep a dated copy in reports/archive. The copy is
+evidence of what was received; it is not the current approved result.
+
+After editing the current report, compare its source and counts against the
+validated data. A correct current report should tell a reader which file and
+scenario date the values represent, and it should identify the check that
+supported publication.
+
+When a reviewer finds an unexpected diff
+----------------------------------------
+
+A focused diff may show a legitimate correction next to a changed heading,
+blank line, or unrelated sentence. The student should explain each change. If
+the task did not authorize an extra edit, return to the working copy and
+restore that part without changing incoming.
+
+Repeat the diff after saving. If the editor changed line endings or
+formatting throughout the document, pause and ask the instructor rather than
+recording an unexplained whole-file replacement as a small correction.
+
+When SSH is unavailable at handoff
+----------------------------------
+
+SSH allows scp to copy files from the VM to the Windows host. A blocked
+connection does not mean the edited files disappeared; they remain in working
+inside the VM. Record the access problem and keep the verified files intact.
+
+Confirm the guest IP, Linux username, and active SSH service with the
+instructor. Once access works, run the transfer from Windows Git Bash and
+inspect the destination. Do not mark SEB-08 complete while the only copy is
+still in the VM.
+
+When Git shows more than the course files
+-----------------------------------------
+
+Before staging, git status may show unrelated modifications in the student's
+repository. Do not use git add . automatically. Stage the intended
+source/linux tree and inspect the staged file list and diff.
+
+A successful commit records what was staged, including a mistake if one was
+selected. The student checks before committing and can show another student
+the exact Git commit ID after pushing.
+
+Questions for a receiving operator
+----------------------------------
+
+Which exact file is the approved data source? How do you know the current
+plan is v3? Why is an old report preserved even after its values are
+corrected? Which check identifies an invalid status that still appears on a
+four-field row?
+
+What output should a teammate see if the status validation finds an error?
+How does the team connect a Trello task to a saved file change? Which step
+proves the files moved from the VM into the intended Windows repository
+folder?

@@ -1,0 +1,136 @@
+M20 MAINTENANCE DECISION NOTES
+==============================
+
+Purpose
+-------
+
+This controlled reference explains decisions that cannot be inferred safely
+from the data file alone. It records why an incomplete status is corrected in
+a particular way. The note is read during the data lab, and the received copy
+is not edited.
+
+Decision MN-2026-10-05-01 for SYS-112
+-------------------------------------
+
+The DELTA operator confirmed that SYS-112 was not available for service at
+the reporting cutoff. A component check was incomplete, so its approved
+status for the October 5 baseline is NOT_READY. The blank field in the
+received data is an omission, not permission to select another value.
+
+This decision applies to SYS-112 only. It does not change SYS-110, SYS-111,
+or the status of any other record. The report must still be checked against
+all 12 rows after the repair.
+
+Communication record
+--------------------
+
+Operations sent the maintenance finding to the M20 lead before the report
+cutoff. The lead included the decision in the editing task and retained this
+note with the package. The reviewer can therefore point to a written reason
+rather than an assumption.
+
+If a later inspection clears SYS-112 for service, that is a future change
+requiring a new record and an authorized update. It does not rewrite the
+meaning of the October 5 snapshot.
+
+How students use this note
+--------------------------
+
+When the data file shows SYS-112 with an empty status, first locate the
+record by system ID, then read this note. Enter NOT_READY only in the working
+data file and keep the other fields exactly as they were.
+
+After saving in vim, show the corrected row, run the field-count and allowed-
+status checks, and record the reason with the SEB-06 task. Another student
+should be able to find the note and reach the same conclusion.
+
+Review boundary
+---------------
+
+This document is an evidence item, not the place to change the operational
+report. It does not authorize editing incoming, changing the approved plan,
+or inventing a different date. Report any contradiction between the note and
+the plan to the instructor before proceeding.
+
+MAINTENANCE CONTEXT AND DECISION TRAIL
+======================================
+
+What the blank meant
+--------------------
+
+The empty third field in SYS-112 is a missing data entry. It does not mean
+the system has no condition, and it does not automatically mean READY. The
+operations note records that a component check was incomplete at the cutoff.
+
+The correct short-term representation for this approved snapshot is
+NOT_READY. This choice allows the team to count the system while accurately
+stating that it could not be used.
+
+Why related records do not supply an answer
+-------------------------------------------
+
+SYS-110 and SYS-111 share the DELTA unit with SYS-112, but each system has
+its own status. The status of a neighboring row cannot establish the
+condition of another system.
+
+A common editing mistake is to copy a nearby value into a blank cell. The
+team avoids that mistake by requiring a written decision tied to the specific
+system ID.
+
+When the decision can change
+----------------------------
+
+A later maintenance check may provide new facts. The later team can record a
+change request, decide whether to approve an update, and create a new current
+baseline. That action does not retroactively change the October 5 report.
+
+Historical input and the earlier report should remain available so a reviewer
+can tell which facts were known at each point in time.
+
+REVIEW OF THE SYS-112 DECISION
+==============================
+
+Timeline at the reporting cutoff
+--------------------------------
+
+Before the October 5 snapshot, the DELTA unit noted an incomplete component
+check for SYS-112. The received row had an empty status because the
+information was not entered into the data file. The decision note supplies
+the missing operational fact for that specific system.
+
+At the cutoff, the system was not ready for service. The approved correction
+is NOT_READY for the current baseline. The last-checked date remains
+2026-10-05 because the task does not authorize rewriting that field.
+
+What a reviewer must be able to show
+------------------------------------
+
+The reviewer locates the SYS-112 row, points to the empty status in the
+incoming copy, locates this note, and verifies NOT_READY in the working copy.
+They should also confirm the row's ID, unit, and date were not changed.
+
+A correction without a reason would be difficult to defend. Recording this
+specific source makes the edit repeatable for another student and supports
+the report's NOT_READY count.
+
+How later facts would be handled
+--------------------------------
+
+If SYS-112 passes a later inspection, a future snapshot may carry READY. That
+later observation would need its own date, authorization, and report. It
+cannot be silently substituted into the October 5 historical baseline.
+
+Keeping separate versions of the input and report lets the team explain
+different counts across time instead of pretending that only one state ever
+existed.
+
+Why an example is not an instruction to edit
+--------------------------------------------
+
+This reference may repeat the old blank status in a quoted example. It is
+documentation about received evidence, not an active data file. Students
+should not apply a global replacement across documentation and data.
+
+Edit the single authorized row in working/data/systems_status.dat and leave
+this maintenance reference unchanged unless a later approved task
+specifically updates it.

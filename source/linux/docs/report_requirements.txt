@@ -1,0 +1,179 @@
+M20 APPROVED REPORT REQUIREMENTS
+================================
+
+Authority and scope
+-------------------
+
+This file states the approved requirements for the M20 manual readiness
+report during Simple Editing Basics. It is a reference document; students
+read it but do not edit it. The current project plan is revision 3. A Trello
+card records who is doing each approved editing task.
+
+The team will later automate and export the same controlled baseline. No
+student changes the number of records or the agreed status totals as part of
+a text-editing exercise. An extra practice file may contain more rows, but it
+must not replace the 12-record baseline.
+
+Source and layout
+-----------------
+
+The input path is data/systems_status.dat relative to the working folder. It
+contains exactly 12 nonempty records, one each for SYS-101 through SYS-112.
+Every record has four fields separated by the pipe character:
+system_id|unit|status|last_checked.
+
+The unit identifies ALPHA, BRAVO, CHARLIE, or DELTA. A valid status is
+exactly READY, MAINTENANCE, or NOT_READY. Last checked dates use YYYY-MM-DD.
+Do not modify otherwise valid system IDs, units, or dates to make a count
+come out correctly.
+
+Required decisions
+------------------
+
+The approved maintenance note gives SYS-112 status NOT_READY. The source has
+an empty field, so students must consult that note before completing the
+record. SYS-102 has the shortened word MAINT; use MAINTENANCE. SYS-103 has a
+space in NOT READY; use NOT_READY.
+
+SYS-104 has lowercase ready; use READY. SYS-107 has a trailing space after
+READY; remove the space. SYS-108 uses a date in the wrong order and separator
+format; use 2026-10-05. These corrections are specific; do not run a broad
+unreviewed replacement across every file.
+
+Report fields and checks
+------------------------
+
+The manual current report belongs at reports/current_status_report.txt. It
+must state Generated: 2026-10-05, Source: data/systems_status.dat, READY: 5,
+MAINTENANCE: 3, NOT_READY: 4, and TOTAL: 12. The date is the scenario date,
+not the actual day the class meets.
+
+The report must say how the data was validated and identify the reviewed
+source. It must not claim a FINAL status solely because a prior copy used
+that word. Invalid input must stop report publication and produce a clear
+reason.
+
+Preservation and review
+-----------------------
+
+Do not delete prior reports. Preserve a copy in reports/archive with a date
+or other distinguishable identifier before replacing a current report.
+Incoming files remain unchanged, even if they contain errors that the working
+copy corrects.
+
+A different team member checks the count against the data file, confirms the
+working procedure and handoff note match these rules, reviews the focused
+diffs, and records evidence on the appropriate Trello card. Unresolved
+problems are documented, not silently removed.
+
+Later courses
+-------------
+
+The Bash course validates input before counting, preserves prior output, and
+generates a new report. OpenVMS DCL exports the same 12 records with a
+control record. Python reads the approved source formats, validates them, and
+produces matching totals.
+
+These future requirements give context for consistent documentation and file
+paths today. Students do not write Bash, DCL, or Python programs in Simple
+Editing Basics.
+
+REVIEW EXAMPLES FOR MANUAL REPORT ACCEPTANCE
+============================================
+
+Example of an acceptable current result
+---------------------------------------
+
+The report identifies 2026-10-05 as the scenario generation date, names
+data/systems_status.dat, and prints 5 READY, 3 MAINTENANCE, 4 NOT_READY, and
+12 TOTAL. It also says the twelve rows were checked for structure, allowed
+status, and date shape.
+
+A checker can reach these same counts independently from the corrected
+working data file. The report makes no unsupported claim that the numbers
+came from automation or that a filename by itself proved approval.
+
+Example of a result that needs more work
+----------------------------------------
+
+A report that says READY: 5 and TOTAL: 12 but omits MAINTENANCE and NOT_READY
+cannot be checked fully. A report with the right counts but the wrong source
+path is also incomplete, because a future operator could load a different
+file.
+
+A date written as 10/05/26 could mean different things in different
+countries. Use 2026-10-05 so the report aligns with the controlled scenario
+and avoids ambiguous month and day order.
+
+A report cannot make bad input valid
+------------------------------------
+
+A manual report may be edited with gedit, nano, or vim, but changes in the
+report do not fix the underlying data. If SYS-112 remains blank or SYS-107
+has a trailing space, stop and correct the authorized working source first.
+
+The checker should inspect both data and report. Repeating a stale number in
+a polished format is not verification.
+
+REVIEWER ACCEPTANCE SCENARIOS
+=============================
+
+Case 1  Correct numbers but incomplete source
+---------------------------------------------
+
+A student types the four expected totals into a report before checking the
+data. The numbers match the answer key, but the source file still has an
+empty SYS-112 status. The report is not acceptable because the checked source
+does not support its claim.
+
+Repair the authorized working data, run validation again, compute the counts
+from that file, and record the check. The report becomes current only after
+the evidence agrees.
+
+Case 2  Correct source but wrong filename in prose
+--------------------------------------------------
+
+The data file is valid, yet the procedure tells an operator to open
+data/system_status.dat. A person following that instruction may fail to
+locate the file or may open an unrelated old copy. Report accuracy today does
+not eliminate this future risk.
+
+Correct the operational path in the working procedure and check it against
+config/report_settings.conf. Preserve a historical sentence that accurately
+explains why an old path appeared in the received copy.
+
+Case 3  Archiving without hiding prior errors
+---------------------------------------------
+
+An earlier report had incorrect counts and should not be used to make a new
+operational decision. It still belongs in reports/archive with a
+distinguishable filename because it documents the condition that prompted the
+repair.
+
+The current report should point to the validated source and scenario date.
+The archived copy should not be rewritten to show the new totals, because
+then the team could no longer reconstruct what originally arrived.
+
+Case 4  Date formats and audience
+---------------------------------
+
+The date 10/05/26 could be interpreted as October 5 or May 10 in different
+regions. The approved display 2026-10-05 identifies the scenario
+unambiguously. The report date is separate from the last-checked dates stored
+per system.
+
+Do not set every source record's last-checked date to the report generation
+date. A valid earlier source date is part of the record's history and can
+stay unchanged.
+
+Case 5  Repeating a check
+-------------------------
+
+A teammate who did not write the report should be able to open the corrected
+data file, count 12 rows, check fields and statuses, compute category totals,
+and compare them to the manual report. No step should require guessing which
+file the author used.
+
+The checker records the relevant path, the result, and any exception on the
+class Trello card. This strengthens the handoff to the Bash course without
+adding a new worksheet or approval system.

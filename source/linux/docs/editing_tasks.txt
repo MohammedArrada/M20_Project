@@ -1,0 +1,163 @@
+M20 SIMPLE EDITING TASK REGISTER
+================================
+
+How to use this register
+------------------------
+
+This is the in-package task reference for the editing course. Students use it
+with their existing Trello cards and the approved v3 plan. Check the exact
+file path before any edit and preserve incoming as original evidence.
+
+CORE items are required for the class baseline. EXTEND items add practice
+when the student finishes early. Do not treat an extension file as an
+approved replacement for the 12-record input.
+
+SEB-01 and SEB-02  VM access and retrieval
+------------------------------------------
+
+Start the graphical AlmaLinux VM and use the terminal to confirm the VM name,
+Linux user, home folder, and editor tools. Use the direct class download URL
+and wget inside the VM to save the ZIP under ~/simple_editing.
+
+Extract the archive once. Expect incoming, working, and extensions. Stop and
+tell the instructor if the ZIP fails, extracts into an unexpected extra
+parent folder, or omits a required directory.
+
+SEB-03  Package inventory
+-------------------------
+
+List files and identify text, configuration, data, and report types. Read the
+short path and permission details with terminal commands. Verify that
+incoming and working copies begin identical and that the baseline data has 12
+nonempty rows.
+
+The original copies must remain unchanged throughout the course. Record the
+initial comparison so a later diff can show exactly what was edited in
+working.
+
+SEB-04  Documentation in gedit
+------------------------------
+
+Correct the README data filename and the outdated instruction to email a
+final report. In docs/operating_procedure.txt, repair the source filename,
+field delimiter, approved status names, report location, unsupported FINAL
+filename, and instruction to delete prior reports.
+
+Also review docs/handoff_note.txt. Correct its data filename, stale counts
+and statuses, and incorrect source/linux/working destination. Keep the note’s
+useful background and make its handoff directions agree with the approved
+report requirements. Read docs/maintenance_notes.txt and
+docs/data_dictionary.md for context, but do not change these reference files.
+
+After saving, use diff for each edited document and explain why each changed
+line is authorized. Do not edit docs/report_requirements.txt, incoming, or
+the future-course requirement files during this task.
+
+SEB-05  Configuration in nano
+-----------------------------
+
+Change DATA_FILE to data/systems_status.dat, REPORT_DIR to reports,
+ARCHIVE_DIR to reports/archive, ALLOWED_STATUSES to
+READY,MAINTENANCE,NOT_READY, and REPORT_TITLE to M20 Readiness Report. Keep
+PROJECT_NAME unchanged.
+
+The configuration contains comments and explanations, not just six settings.
+Verify exactly one active occurrence of each key, no spaces around equals
+signs, and the existence of paths relative to working. A focused diff should
+show only the five approved active-value corrections.
+
+SEB-06  Data in vim
+-------------------
+
+Repair SYS-102 status MAINT to MAINTENANCE, SYS-103 NOT READY to NOT_READY,
+SYS-104 ready to READY, SYS-107 trailing space after READY, SYS-108 date
+10/05/2026 to 2026-10-05, and SYS-112 empty status to NOT_READY. The
+maintenance note explains SYS-112.
+
+Keep all 12 IDs and unit names. Do not change the dates of otherwise valid
+rows. Use an optional 60-row exercise in extensions only for additional vim
+searching and review; it does not alter the report baseline.
+
+SEB-07  Verification and manual report
+--------------------------------------
+
+Check 12 valid rows, four fields in each, exact allowed statuses, ISO-shaped
+dates, and corrected counts 5 READY, 3 MAINTENANCE, 4 NOT_READY. Update
+reports/current_status_report.txt from the verified data, not from the stale
+received counts.
+
+Use the scenario date 2026-10-05, corrected source path, and a supported
+status statement. Preserve a copy of the earlier report in reports/archive if
+making a replacement copy. Compare the working report with incoming and
+record the checker’s result.
+
+SEB-08  Transfer and Git evidence
+---------------------------------
+
+From Windows Git Bash, confirm the M20_Project repository and preexisting
+source/linux folder. Connect to the VM with ssh and pull the verified
+contents of working into source/linux with scp.
+
+Review the copied files, run git status, stage only source/linux, inspect
+staged changes, commit with SEB-08 in the message, push to GitHub, and record
+the short commit ID on the Trello card. Stop if the copy lands in an
+unintended nested working folder.
+
+TASK DETAILS AND OBSERVABLE RESULTS
+===================================
+
+SEB-04 review questions
+-----------------------
+
+In the README, can you locate two operational lines that disagree with
+current requirements while preserving the long background sections? In the
+procedure, can you tell which old words are still active instructions and
+which appear only in examples of past mistakes?
+
+For each changed line, record why the current v3 requirements support the
+correction. The procedure should make sense if a different student reads it
+without seeing the original file.
+
+SEB-05 review questions
+-----------------------
+
+Can you identify six active settings among the comments and show that
+PROJECT_NAME is already correct? Can you find each of the three referenced
+paths from the working root?
+
+A duplicate active key is a concern even if one occurrence is correct. A
+comment that repeats an old term as an example is not a second active key.
+The reviewer should be able to explain the difference.
+
+SEB-06 review questions
+-----------------------
+
+After the guided correction to SYS-102, can you identify the five other
+specified problem rows from their IDs? Which source establishes the missing
+status of SYS-112? Why is SYS-108 the only approved date-shape correction?
+
+Use vim search, change-word, undo, and confirmed replacements as appropriate.
+A broad substitution without checking each match is not an acceptable reason
+for changing other rows.
+
+SEB-07 review questions
+-----------------------
+
+Do the 12 validated records produce 5 READY, 3 MAINTENANCE, 4 NOT_READY? Does
+the manual report show those values, correct source path, date, and a
+supported status statement?
+
+Did the student preserve the previous manual report before replacing it? Does
+the independent checker identify the actual data path and the check performed
+rather than merely agreeing with an expected answer?
+
+SEB-08 review questions
+-----------------------
+
+Is the Windows Git Bash current directory the student's M20_Project
+repository? Does source/linux contain the copied working files directly,
+without another working folder? Does git status show only intended changes?
+
+Can another student find the pushed commit from the Trello card and verify
+that the source/linux files match the inspected VM output? If not, record the
+missing evidence before calling the handoff complete.
